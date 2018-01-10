@@ -140,7 +140,7 @@ eliminateArgs ps cons = (remove ps, transform f cons)
     where
         args = [zs | z:zs <- map fromApps $ universeApps cons, z =~= recursive]
         elim = [all (\xs -> length xs > i && view (xs !! i) == Var_ p) args | (i,p) <- zip [0..] ps] ++ repeat False
-        remove = concat . zipWith (\b x -> [x | not b]) elim
+        remove x = concat $ zipWith (\b x -> [x | not b]) elim x
 
         f (fromApps -> x:xs) | x == recursive = apps $ x : remove xs
         f x = x
