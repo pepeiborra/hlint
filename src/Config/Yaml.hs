@@ -1,4 +1,4 @@
-{-# LANGUAGE OverloadedStrings, ViewPatterns, RecordWildCards, GeneralizedNewtypeDeriving, TupleSections #-}
+{-# LANGUAGE OverloadedStrings, ViewPatterns, RecordWildCards, GeneralizedNewtypeDeriving #-}
 
 module Config.Yaml(
     ConfigYaml,
@@ -101,7 +101,7 @@ parseObject1 :: Val -> Parser (String, Val)
 parseObject1 v = do
     mp <- parseObject v
     case Map.keys mp of
-        [T.unpack -> s] -> (s,) <$> parseField s v
+        [T.unpack -> s] -> (,) s <$> parseField s v
         _ -> parseFail v $ "Expected exactly one key but got " ++ show (Map.size mp)
 
 parseString :: Val -> Parser String
