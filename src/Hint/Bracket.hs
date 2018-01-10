@@ -124,6 +124,9 @@ bracket bad = f Nothing
         g :: (Data (a S), ExactP a, Pretty (a S), Brackets (a S)) => a S -> [Idea]
         g o = concat [f (Just (i,o,gen)) x | (i,(x,gen)) <- zip [0..] $ holes o]
 
+bracketWarning, bracketError
+  :: (Annotated a, Data (a S), Pretty (a SrcSpanInfo))
+  => String -> a SrcSpanInfo -> a S -> Idea
 bracketWarning msg o x =
   suggest msg o x [Replace (findType x) (toSS o) [("x", toSS x)] "x"]
 bracketError msg o x =

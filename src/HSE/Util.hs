@@ -305,6 +305,7 @@ dropAnn = void
 
 -- enforce all being on S, as otherwise easy to =~= on a Just, and get the wrong functor
 
+(/=~=) :: (Eq (a ()), Annotated a) => a n -> a n -> Bool
 x /=~= y = not $ x =~= y
 
 elem_, notElem_ :: (Annotated f, Eq (f ())) => f S -> [f S] -> Bool

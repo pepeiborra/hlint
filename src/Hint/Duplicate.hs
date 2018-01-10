@@ -31,6 +31,8 @@ duplicateHint ms =
     where modu = map snd ms
 
 
+dupes :: (Ord (f()), Annotated f, Pretty (f SrcSpan)) =>
+         [[f SrcSpanInfo]] -> [Idea]
 dupes ys =
     [rawIdeaN
         (if length xs >= 5 then Warning else Suggestion)
