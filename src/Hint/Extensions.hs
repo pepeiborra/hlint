@@ -280,9 +280,12 @@ derives m = mconcat $ map decl (childrenBi m) ++ map idecl (childrenBi m)
         ih (IHParen _ a) = ih a
         ih (IHApp _ a _) = ih a
 
+un :: a
 un = undefined
 
+hasT :: (Data a, Data b) => a -> b -> Bool
 hasT t x = not $ null (universeBi x `asTypeOf` [t])
+hasT2 :: (Data a1, Data a2, Data b) => (a1,a2) -> b -> Bool
 hasT2 ~(t1,t2) = hasT t1 ||^ hasT t2
 
 hasS :: (Data x, Data (f S)) => (f S -> Bool) -> x -> Bool
