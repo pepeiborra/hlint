@@ -1,4 +1,4 @@
-{-# LANGUAGE OverloadedStrings, ViewPatterns, RecordWildCards, GeneralizedNewtypeDeriving #-}
+{-# LANGUAGE DerivingStrategies, OverloadedStrings, ViewPatterns, RecordWildCards, GeneralizedNewtypeDeriving #-}
 
 module Config.Yaml(
     ConfigYaml,
@@ -40,7 +40,9 @@ readFileConfigYaml file contents = do
 ---------------------------------------------------------------------
 -- YAML DATA TYPE
 
-newtype ConfigYaml = ConfigYaml [ConfigItem] deriving (Semigroup,Monoid,Show)
+newtype ConfigYaml = ConfigYaml [ConfigItem]
+  deriving (Show)
+  deriving newtype (Semigroup,Monoid)
 
 data ConfigItem
     = ConfigPackage Package
