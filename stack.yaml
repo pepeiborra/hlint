@@ -1,0 +1,15 @@
+
+flags: {}
+extra-package-dbs: []
+extra-deps:
+   - /Users/pepe/scratch/debug
+   - /Users/pepe/scratch/Hoed
+   - /Users/pepe/scratch/libgraph
+packages:
+- .
+resolver: lts-13.16 
+ghc-options:
+  "$locals":
+    -F -pgmF debug-pp -O2
+  "Hoed":
+    -fno-ignore-asserts
